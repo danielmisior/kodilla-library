@@ -1,49 +1,37 @@
 package com.crud.kodilla.library.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "READERS")
-public final class Reader {
-
-    public Reader(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-        this.dateCreated = new Date();
-    }
+@Table(name = "COPIES_OF_BOOKS")
+public final class BookCopy {
 
     @Id
     @NotNull
     @GeneratedValue
-    @Column(name = "READER_ID", unique = true)
+    @Column(name = "BOOK_ID", unique = true)
     private Long id;
 
-    @NotNull
-    @Column(name = "NAME")
-    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "TITLE_ID")
+    private Title title;
 
-    @NotNull
-    @Column(name = "SURNAME")
-    private String surname;
-
-    @NotNull
-    @Column(name = "CREATED")
-    private Date dateCreated;
+    @Column(name = "STATUS")
+    private Status status;
 
     @OneToMany(
             targetEntity = Rentals.class,
-            mappedBy = "reader",
+            mappedBy = "bookCopy",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
