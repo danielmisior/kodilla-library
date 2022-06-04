@@ -16,6 +16,12 @@ import java.util.List;
 @Table(name = "TITLES")
 public final class Title {
 
+    public Title(String title, String author, LocalDate publicationYear, List<BookCopy> bookCopies) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
+
     @Id
     @NotNull
     @GeneratedValue
