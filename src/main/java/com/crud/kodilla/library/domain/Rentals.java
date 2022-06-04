@@ -23,6 +23,13 @@ public final class Rentals {
         this.returnDate = returnDate;
     }
 
+   public Rentals(Reader reader, BookCopy bookCopy) {
+        this.reader = reader;
+        this.bookCopy = bookCopy;
+        this.rentalDate = new Date();
+        this.returnDate = LocalDate.now().plusDays(14L);
+    }
+
     @Id
     @NotNull
     @GeneratedValue
@@ -34,7 +41,7 @@ public final class Rentals {
     private Reader reader;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "BOOK_COPY_ID")
     private BookCopy bookCopy;
 
     @Column(name = "RENTAL_DATE")

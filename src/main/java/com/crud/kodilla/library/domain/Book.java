@@ -14,9 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "TITLES")
-public final class Title {
+public final class Book {
 
-    public Title(String title, String author, LocalDate publicationYear, List<BookCopy> bookCopies) {
+    public Book(String title, String author, LocalDate publicationYear, List<BookCopy> bookCopies) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
@@ -41,7 +41,7 @@ public final class Title {
 
     @OneToMany(
             targetEntity = BookCopy.class,
-            mappedBy = "title",
+            mappedBy = "book",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
