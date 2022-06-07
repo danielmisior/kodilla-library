@@ -1,4 +1,4 @@
-package com.crud.kodilla.library.dao;
+package com.crud.kodilla.library.repository;
 
 import com.crud.kodilla.library.domain.*;
 import org.junit.jupiter.api.AfterEach;
@@ -15,20 +15,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@DisplayName("Repository Test")
-public class LibraryDaoTestSuite {
+@DisplayName("Repositories Test")
+public class LibraryRepositoriesTestSuite {
 
     @Autowired
-    private ReaderDao readerDao;
+    private ReaderRepository readerRepository;
 
     @Autowired
-    private BookDao bookDao;
+    private BookRepository bookRepository;
 
     @Autowired
-    private BookCopyDao bookCopyDao;
+    private BookCopyRepository bookCopyRepository;
 
     @Autowired
-    private RentalsDao rentalsDao;
+    private RentalsRepository rentalsRepository;
 
     private static int testCounter;
 
@@ -63,7 +63,7 @@ public class LibraryDaoTestSuite {
     @Test
     void testSaveReader() {
         //Given
-        readerDao.save(reader);
+        readerRepository.save(reader);
 
         //When
         Long id = reader.getId();
@@ -77,7 +77,7 @@ public class LibraryDaoTestSuite {
             assertNotNull(id);
         } finally {
             //CleanUp
-            readerDao.deleteById(id);
+            readerRepository.deleteById(id);
         }
     }
 
@@ -85,7 +85,7 @@ public class LibraryDaoTestSuite {
     @Test
     void testSaveTitle() {
         //Given
-        bookDao.save(book);
+        bookRepository.save(book);
 
         //When
         String title = book.getTitle();
@@ -99,7 +99,7 @@ public class LibraryDaoTestSuite {
             assertNotNull(bookId);
         } finally {
             //CleanUp
-            bookDao.deleteById(bookId);
+            bookRepository.deleteById(bookId);
         }
     }
 
@@ -110,7 +110,7 @@ public class LibraryDaoTestSuite {
         bookCopies.add(bookCopy);
         bookCopy.setBook(book);
 
-        bookCopyDao.save(bookCopy);
+        bookCopyRepository.save(bookCopy);
 
         //When
         String title = bookCopy.getBook().getTitle();
@@ -128,7 +128,7 @@ public class LibraryDaoTestSuite {
 
         } finally {
             //CleanUp
-            bookCopyDao.deleteById(bookCopyId);
+            bookCopyRepository.deleteById(bookCopyId);
         }
     }
 
@@ -139,7 +139,7 @@ public class LibraryDaoTestSuite {
         bookCopies.add(bookCopy);
         bookCopy.setBook(book);
 
-        rentalsDao.save(rental);
+        rentalsRepository.save(rental);
 
         //When
         Long rentalId = rental.getId();
@@ -159,7 +159,7 @@ public class LibraryDaoTestSuite {
             assertEquals("Title", title);
         } finally {
             //CleanUp
-            rentalsDao.deleteById(rentalId);
+            rentalsRepository.deleteById(rentalId);
         }
     }
 }

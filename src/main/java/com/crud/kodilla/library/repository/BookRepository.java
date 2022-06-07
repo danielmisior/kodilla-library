@@ -1,4 +1,4 @@
-package com.crud.kodilla.library.dao;
+package com.crud.kodilla.library.repository;
 
 import com.crud.kodilla.library.domain.Book;
 import org.springframework.data.repository.CrudRepository;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Transactional
 @Repository
-public interface BookDao extends CrudRepository<Book, Integer> {
+public interface BookRepository extends CrudRepository<Book, Integer> {
 
     Book save(Book book);
     void deleteById(Long id);
