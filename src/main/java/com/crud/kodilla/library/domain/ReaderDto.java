@@ -15,11 +15,4 @@ public class ReaderDto {
     private String name;
     private String surname;
     private Date dateCreated;
-
-    public ReaderDto(Long id, String name, String surname) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.dateCreated = new Date();
-    }
 }
