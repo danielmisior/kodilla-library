@@ -16,20 +16,6 @@ import java.util.Date;
 @Table(name = "RENTALS")
 public final class Rentals {
 
-    public Rentals(Reader reader, BookCopy bookCopy, LocalDate returnDate) {
-        this.reader = reader;
-        this.bookCopy = bookCopy;
-        this.rentalDate = new Date();
-        this.returnDate = returnDate;
-    }
-
-   public Rentals(Reader reader, BookCopy bookCopy) {
-        this.reader = reader;
-        this.bookCopy = bookCopy;
-        this.rentalDate = new Date();
-        this.returnDate = LocalDate.now().plusDays(14L);
-    }
-
     @Id
     @NotNull
     @GeneratedValue
@@ -49,4 +35,18 @@ public final class Rentals {
 
     @Column(name = "RETURN_DATE")
     private LocalDate returnDate;
+
+    public Rentals(Reader reader, BookCopy bookCopy, Date rentalDate, LocalDate returnDate) {
+        this.reader = reader;
+        this.bookCopy = bookCopy;
+        this.rentalDate = rentalDate;
+        this.returnDate = returnDate;
+    }
+
+    public Rentals(Reader reader, BookCopy bookCopy, LocalDate returnDate) {
+        this.reader = reader;
+        this.bookCopy = bookCopy;
+        this.rentalDate = new Date();
+        this.returnDate = returnDate;
+    }
 }

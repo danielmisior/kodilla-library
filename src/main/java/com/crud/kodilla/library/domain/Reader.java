@@ -2,6 +2,7 @@ package com.crud.kodilla.library.domain;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,17 +12,12 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "READERS")
 public final class Reader {
-
-    public Reader(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-        this.dateCreated = new Date();
-    }
 
     @Id
     @NotNull
@@ -48,4 +44,16 @@ public final class Reader {
             fetch = FetchType.LAZY
     )
     private List<Rentals> rentals;
+    public Reader(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+        this.dateCreated = new Date();
+    }
+
+    public Reader(Long id, String name, String surname, Date dateCreated) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.dateCreated = new Date();
+    }
 }

@@ -4,8 +4,6 @@ import com.crud.kodilla.library.domain.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
-
 @RestController
 @RequestMapping("v1/library")
 public class LibraryController {

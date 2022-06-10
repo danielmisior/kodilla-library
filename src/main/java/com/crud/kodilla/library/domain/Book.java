@@ -1,6 +1,7 @@
 package com.crud.kodilla.library.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,17 +11,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@Builder
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "TITLES")
 public final class Book {
-
-    public Book(String title, String author, LocalDate publicationYear, List<BookCopy> bookCopies) {
-        this.title = title;
-        this.author = author;
-        this.publicationYear = publicationYear;
-    }
 
     @Id
     @NotNull
@@ -46,4 +42,10 @@ public final class Book {
             fetch = FetchType.LAZY
     )
     private List<BookCopy> bookCopies;
+
+    public Book(String title, String author, LocalDate publicationYear, List<BookCopy> bookCopies) {
+        this.title = title;
+        this.author = author;
+        this.publicationYear = publicationYear;
+    }
 }
